@@ -3,8 +3,8 @@
   <!-- <div>
     <img src="src/assets/HappyPlatesLogo.png" style="width: 200px; height: 200px; object-fit: cover"/>
   </div> -->
-<Gpt @added = "change"/>
-<Weather/>
+<Gpt @save="refresh" />
+<Weather :key = "refreshComp"/>
 <Itinerary :key = "refreshComp"/>
 <Logout/>
 </template>
@@ -35,8 +35,8 @@ export default {
     }
   },
   methods: {
-    change() {
-      this.refreshComp +=1
+    refresh() {
+      this.refreshComp++;
     }
   },
   mounted() {

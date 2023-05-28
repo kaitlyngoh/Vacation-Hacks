@@ -1,4 +1,5 @@
 <template>
+  <div id="loading" style="display: none;">Please allow response time of up to a minute...</div>
   <div id="secondContainer">
     <form id="myForm">
       <h1 class="titleOfDiv">Vacation Planner</h1>
@@ -22,7 +23,7 @@
           type="text"
           id="budget1"
           required=""
-          placeholder="Enter Budget"
+          placeholder="Enter Budget (USD)"
         />
         <br /><br />
 
@@ -75,6 +76,7 @@ export default {
 
   methods: {
     async accessGpt() {
+      document.getElementById("loading").style.display = "block";
       console.log(this.useremail)
       let location = document.getElementById('location1').value;
       let days = document.getElementById('days1').value;
@@ -108,12 +110,15 @@ export default {
 
       axios(request)
         .then(async (response) => {
+          document.getElementById("loading").style.display = "none";
+
           const responseData = response.data.choices[0].message.content;
           // Response from gpt about Itinerary
           console.log(responseData);
 
           try {
-            const docRef = await setDoc(doc(db, 'itinerary', location), {
+            this.$emit('save');
+            const docRef = await setDoc(doc(db, 'itinerary', location + this.useremail), {
               email:this.useremail,
               location: location,
               days: days,
@@ -152,7 +157,8 @@ export default {
           console.log(responseData);
 
           try {
-            const docRef = await setDoc(doc(db, 'weather', location), {
+            this.$emit('save');
+            const docRef = await setDoc(doc(db, 'weather',  location + this.useremail), {
               email: this.useremail,
               temperature: responseData,
               month: month

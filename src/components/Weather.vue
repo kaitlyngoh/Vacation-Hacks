@@ -1,7 +1,7 @@
 <template>
         <h2 id = "IP">Weather</h2>
-        <h3 v-if="this.temp">{{ this.temp }}</h3>
-        <h3 v-else> Please Key In Month</h3>
+        <h3 v-if="this.temp">{{ this.temp }} in {{ this.mth }}</h3>
+        <h3 v-else> Please Key In Fields</h3>
 </template>
 
 <script>
@@ -26,7 +26,8 @@ export default {
     },
     data() {
         return {
-            temp: ''
+            temp: '',
+            mth: ''
         }
     },
     methods: {
@@ -43,7 +44,9 @@ export default {
                 const querySnapshotWeather = await getDocs(tempQuery);
                 const userDocument = (querySnapshotWeather.docs)[0]
                 var temp = userDocument.data().temperature
+                var mth = userDocument.data().month
                 this.temp = temp
+                this.mth = mth
                 resolve(temp);
             } else {
                 reject("User not authenticated.");
