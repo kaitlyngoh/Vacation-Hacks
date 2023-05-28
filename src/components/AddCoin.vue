@@ -26,6 +26,15 @@
         />
         <br /><br />
 
+        <label for="month1"> Month: </label>
+        <input
+          type="text"
+          id="month1"
+          required=""
+          placeholder="Enter Month"
+        />
+        <br /><br />
+
         <div class="save">
           <button id="saveBtn" type="button" v-on:click="accessGpt">Save</button
           ><br /><br />
@@ -69,6 +78,7 @@ export default {
       let location = document.getElementById('location1').value;
       let days = document.getElementById('days1').value;
       let budget = document.getElementById('budget1').value;
+      let month = document.getElementById('month1').value;
 
       let message =
         'Create an itinerary for a ' +
@@ -117,6 +127,41 @@ export default {
         .catch((error) => {
           console.error(error);
         });
+    message = 'Give me 1 number for the temperature in ' + location + 'in the month of ' + month
+    request = {
+        method: 'post',
+        url: 'https://api.openai.com/v1/chat/completions',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${apiKey}`,
+        },
+        data: {
+          model: 'gpt-3.5-turbo',
+          messages: [{ role: 'user', content: message }],
+          max_tokens: 1000,
+          temperature: 1,
+        },
+      };
+      axios(request)
+        .then(async (response) => {
+          const responseData = response.data.choices[0].message.content;
+          console.log(responseData);
+
+          try {
+            const docRef = await setDoc(doc(db, 'itinerary', location), {
+              temperature: responseData
+            });
+            console.log(
+              'SAVED TO FIRESTORE DATABASE FOR TEMPERATURE OF LOCATION: ' + location
+            );
+          } catch (error) {
+            console.error('Error adding document: ', error);
+          }
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+
 
     },
   },
