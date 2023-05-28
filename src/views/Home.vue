@@ -5,7 +5,7 @@
   </div> -->
 <Gpt @added = "change"/>
 <Weather/>
-<Itenary :key = "refreshComp"/>
+<Itinerary :key = "refreshComp"/>
 <Logout/>
 </template>
 
@@ -14,7 +14,7 @@ import { RouterLink, RouterView } from 'vue-router'
 import { getAuth, onAuthStateChanged } from 'firebase/auth'
 
 import Gpt from "@/components/Gpt.vue"
-import Itenary from '@/components/Itenary.vue'
+import Itinerary from '@/components/Itinerary.vue'
 import Weather from '@/components/Weather.vue'
 import NavBar from '@/components/NavBar.vue'
 import Logout from '@/components/Logout.vue'
@@ -24,7 +24,7 @@ export default {
   components : {
     Gpt,
     Weather,
-    Itenary,
+    Itinerary,
     NavBar,
     Logout
   },

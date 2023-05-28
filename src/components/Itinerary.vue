@@ -1,8 +1,10 @@
 <template>
-        <h2 id = "IP">Itenary Plan</h2>
-        <br>
+        <h2 id = "IP">Itinerary Plan</h2>
+
+        <h3 v-if="this.loc">{{ this.drn }} days itinerary in {{ this.loc }} </h3>
+        
         <h3 v-if="this.itr">{{ this.itr }}</h3>
-        <h3 v-else> Please Key In Itenary</h3>
+        <h3 v-else> Please Key In Itinerary</h3>
         <br>
 </template>
 
@@ -29,7 +31,9 @@ export default {
     },
     data() {
         return {
-            itr: ''
+            itr: '',
+            loc: '',
+            drn: ''
         }
     },
     methods: {
@@ -46,8 +50,15 @@ export default {
                 const querySnapshotItr = await getDocs(itrQuery);
                 const userDocument = (querySnapshotItr.docs)[0]
                 var itr = userDocument.data().plan
+                var loc = userDocument.data().location
+                var drn = userDocument.data().days
+                this.drn = drn
+                this.loc = loc
                 this.itr = itr
-                console.log(itr)
+                
+                let days = itr.split('\n\n');
+                console.log(days)
+
                 resolve(itr);
             } else {
                 reject("User not authenticated.");
