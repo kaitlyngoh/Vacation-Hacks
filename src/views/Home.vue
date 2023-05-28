@@ -1,10 +1,8 @@
 <template>
 <NavBar/>
-  <h3>THIS IS HOME PAGE</h3>
-  <div>
+  <!-- <div>
     <img src="src/assets/HappyPlatesLogo.png" style="width: 200px; height: 200px; object-fit: cover"/>
-  </div>
-<WelcomeCpp/><br>
+  </div> -->
 <AddCoin @added = "change"/>
 <ProfitDisplay :key = "refreshComp"/>
 <Logout/>
@@ -23,7 +21,6 @@ import Logout from '@/components/Logout.vue'
 export default {
   name: 'App',
   components : {
-    WelcomeCpp,
     AddCoin,
     ProfitDisplay,
     NavBar,

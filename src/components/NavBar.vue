@@ -2,10 +2,7 @@
 <div id = logged v-if="user">
     <div id ="nav">
         <router-link to = "/home"> Home</router-link> |
-        <router-link to = "/about"> About</router-link> |
-        <router-link to = "/profit"> Profits</router-link> |
-        <router-link to = "/profile"> Profile</router-link>
-
+        <router-link to = "/profile"> Profile</router-link> 
     </div>
 </div>
 </template>

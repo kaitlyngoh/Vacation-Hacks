@@ -1,12 +1,7 @@
 <template>
     <div style="text-align:center;">
-        <h1 id = "mainHead"> CRYPTO PAPER PORTFOLIO </h1>
+        <h1 id = "mainHead"> Booking System </h1>
         <div id = "firebaseui-auth-container"></div>
-        <div id = "pageContent">
-            Crypto Paper Portfolio (CPP) is an app to track your crypto Portfolio <br>
-            Enter coin details and get real time profit and loss update of your Portfolio.
-        </div>
-        <h5>copyright@cpp-2021</h5>
     </div>
 </template>
 
@@ -63,4 +58,4 @@ h5{
     text-align: center;
     background-color: rgb(194, 202, 188);
 }
-</style>
+</style> 
