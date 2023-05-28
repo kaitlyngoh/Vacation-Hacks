@@ -1,9 +1,7 @@
 <template>
         <h2 id = "IP">Weather</h2>
-        <br>
         <h3 v-if="this.temp">{{ this.temp }}</h3>
         <h3 v-else> Please Key In Month</h3>
-        <br>
 </template>
 
 <script>
@@ -73,8 +71,4 @@ h2 {
     font-weight: bold;
 }
 
-.bwt {
-    color: aquamarine;
-    background-color: red;
-}
 </style>

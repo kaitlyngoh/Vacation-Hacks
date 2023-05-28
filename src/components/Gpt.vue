@@ -109,7 +109,7 @@ export default {
       axios(request)
         .then(async (response) => {
           const responseData = response.data.choices[0].message.content;
-          // Response from gpt about itenary
+          // Response from gpt about Itinerary
           console.log(responseData);
 
           try {
@@ -153,8 +153,9 @@ export default {
 
           try {
             const docRef = await setDoc(doc(db, 'weather', location), {
-              email:this.useremail,
-              temperature: responseData
+              email: this.useremail,
+              temperature: responseData,
+              month: month
             });
             console.log(
               'SAVED TO FIRESTORE DATABASE FOR TEMPERATURE OF LOCATION: ' + location

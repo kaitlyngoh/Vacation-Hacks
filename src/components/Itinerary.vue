@@ -3,7 +3,14 @@
 
         <h3 v-if="this.loc">{{ this.drn }} days itinerary in {{ this.loc }} </h3>
         
-        <h3 v-if="this.itr">{{ this.itr }}</h3>
+        <table>
+            <tr v-for="item in items" :key="item">
+                <td>{{ item }}</td>
+            </tr>
+        </table>
+
+
+        <h3 v-if="this.itr"></h3>
         <h3 v-else> Please Key In Itinerary</h3>
         <br>
 </template>
@@ -33,7 +40,8 @@ export default {
         return {
             itr: '',
             loc: '',
-            drn: ''
+            drn: '',
+            items:''
         }
     },
     methods: {
@@ -57,6 +65,7 @@ export default {
                 this.itr = itr
                 
                 let days = itr.split('\n\n');
+                this.items = days 
                 console.log(days)
 
                 resolve(itr);
@@ -85,9 +94,24 @@ h1,h2 {
     margin-inline-end: 0px;
     font-weight: bold;
 }
-
-.bwt {
-    color: aquamarine;
-    background-color: red;
+table {
+    border-collapse: collapse;
+    width: 100%;
 }
+
+th, td {
+    text-align: left;
+    padding: 8px;
+    border: 1px solid black;
+}
+
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+th {
+    background-color: #4CAF50;
+    color: white;
+}
+
 </style>
