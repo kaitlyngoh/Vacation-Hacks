@@ -52,6 +52,8 @@ import { doc, setDoc, getDoc } from 'firebase/firestore';
 
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import axios from 'axios';
+import { Spinner } from 'spin.js';
+
 
 const apiKey = import.meta.env.VITE_APP_API_KEY;
 
@@ -76,8 +78,31 @@ export default {
 
   methods: {
     async accessGpt() {
+      var opts = {
+        lines: 13, // The number of lines to draw
+        length: 38, // The length of each line
+        width: 17, // The line thickness
+        radius: 45, // The radius of the inner circle
+        scale: 1, // Scales overall size of the spinner
+        corners: 1, // Corner roundness (0..1)
+        speed: 1.2, // Rounds per second
+        rotate: 0, // The rotation offset
+        animation: 'spinner-line-shrink', // The CSS animation name for the lines
+        direction: 1, // 1: clockwise, -1: counterclockwise
+        color: '#ffffff', // CSS color or array of colors
+        fadeColor: 'transparent', // CSS color or array of colors
+        top: '50%', // Top position relative to parent
+        left: '50%', // Left position relative to parent
+        shadow: '0 0 1px transparent', // Box-shadow for the lines
+        zIndex: 2000000000, // The z-index (defaults to 2e9)
+        className: 'spinner', // The CSS class to assign to the spinner
+        position: 'absolute', // Element positioning
+      };
+      var target = document.getElementById('loading');
+      var spinner = new Spinner(opts).spin(target);
+
       document.getElementById("loading").style.display = "block";
-      console.log(this.useremail)
+      spinner.spin(document.body);
       let location = document.getElementById('location1').value;
       let days = document.getElementById('days1').value;
       let budget = document.getElementById('budget1').value;
@@ -111,7 +136,7 @@ export default {
       axios(request)
         .then(async (response) => {
           document.getElementById("loading").style.display = "none";
-
+          spinner.stop();
           const responseData = response.data.choices[0].message.content;
           // Response from gpt about Itinerary
           console.log(responseData);
