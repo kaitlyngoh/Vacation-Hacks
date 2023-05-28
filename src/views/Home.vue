@@ -3,8 +3,9 @@
   <!-- <div>
     <img src="src/assets/HappyPlatesLogo.png" style="width: 200px; height: 200px; object-fit: cover"/>
   </div> -->
-<AddCoin @added = "change"/>
-<ProfitDisplay :key = "refreshComp"/>
+<Gpt @added = "change"/>
+<Weather/>
+<Itenary :key = "refreshComp"/>
 <Logout/>
 </template>
 
@@ -12,17 +13,18 @@
 import { RouterLink, RouterView } from 'vue-router'
 import { getAuth, onAuthStateChanged } from 'firebase/auth'
 
-import WelcomeCpp from "@/components/WelcomeCpp.vue"
-import AddCoin from "@/components/AddCoin.vue"
-import ProfitDisplay from '@/components/ProfitDisplay.vue'
+import Gpt from "@/components/Gpt.vue"
+import Itenary from '@/components/Itenary.vue'
+import Weather from '@/components/Weather.vue'
 import NavBar from '@/components/NavBar.vue'
 import Logout from '@/components/Logout.vue'
 
 export default {
   name: 'App',
   components : {
-    AddCoin,
-    ProfitDisplay,
+    Gpt,
+    Weather,
+    Itenary,
     NavBar,
     Logout
   },

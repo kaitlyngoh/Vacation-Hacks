@@ -2,13 +2,8 @@
 <div style="text-align: center" v-if="user">
   <NavBar/>
   <h3>This is an About Page</h3>
-  <h2>Welcome to CPP</h2>
-  <h3>CPP Description: Lorem ipsum dolor sit
-    amet consectetur adipisicing elit. Suscipit eum
-    natus illo ipsam eveniet in ullam, quisquam
-    recusandae tenetur voluptates earum iusto non
-    nulla porro? Perferendis quos dignissimos
-    recusandae veritatis? </h3>
+  <h2>Welcome to Vacation Hack</h2>
+  <h3>We are Json Derulo </h3>
     <Logout/>
 </div>
 </template>
