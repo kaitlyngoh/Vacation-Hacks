@@ -36,8 +36,8 @@
         <br /><br />
 
         <div class="save">
-          <button id="saveBtn" type="button" v-on:click="accessGpt">Save</button
-          ><br /><br />
+          <button id="saveBtn" type="button" v-on:click="accessGpt">Save</button>
+          <br /><br />
         </div>
       </div>
     </form>
@@ -75,6 +75,7 @@ export default {
 
   methods: {
     async accessGpt() {
+      console.log(this.useremail)
       let location = document.getElementById('location1').value;
       let days = document.getElementById('days1').value;
       let budget = document.getElementById('budget1').value;
@@ -108,10 +109,12 @@ export default {
       axios(request)
         .then(async (response) => {
           const responseData = response.data.choices[0].message.content;
+          // Response from gpt about itenary
           console.log(responseData);
 
           try {
             const docRef = await setDoc(doc(db, 'itinerary', location), {
+              email:this.useremail,
               location: location,
               days: days,
               budget: budget,
@@ -145,10 +148,12 @@ export default {
       axios(request)
         .then(async (response) => {
           const responseData = response.data.choices[0].message.content;
+          // Response from gpt about weather
           console.log(responseData);
 
           try {
-            const docRef = await setDoc(doc(db, 'itinerary', location), {
+            const docRef = await setDoc(doc(db, 'weather', location), {
+              email:this.useremail,
               temperature: responseData
             });
             console.log(

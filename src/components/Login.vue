@@ -1,6 +1,6 @@
 <template>
     <div style="text-align:center;">
-        <h1 id = "mainHead"> Booking System </h1>
+        <h1 id = "mainHead"> Vacation Hack </h1>
         <div id = "firebaseui-auth-container"></div>
     </div>
 </template>
