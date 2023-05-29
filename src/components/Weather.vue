@@ -1,7 +1,12 @@
 <template>
+    <br>
+    <div id="weathericons">
+        <img src="@/assets/sun.png" style="height: 4vh; width: 2vw; margin-right: 15px;">
         <h2 id = "IP">Weather</h2>
-        <h3 v-if="this.temp">{{ this.temp }} in {{ this.mth }}</h3>
-        <h3 v-else> Please Key In Fields</h3>
+        <img src="@/assets/rain.png" style="height: 4vh; width: 2vw; margin-left: 15px;">
+    </div>
+    <h3 v-if="this.temp" style="font-size: 25px;">{{ this.temp }} in {{ this.mth }}</h3>
+    <h3 v-else style="font-size: 25px;"> Please Key In Fields</h3>
 </template>
 
 <script>
@@ -61,17 +66,18 @@ export default {
 
 <style scoped>
 
-h2 {
-    text-align: center;
-    background-color: rgb(30, 165, 116);
-    font: 700;
-    display: block;
-    font-size: 2em;
-    margin-block-start: 0.67em;
-    margin-block-end: 0.67em;
-    margin-inline-start: 0px;
-    margin-inline-end: 0px;
-    font-weight: bold;
+#weathericons {
+  background-color: rgb(0, 13, 80);
+  color: white;
+  display: inline-block;
+  border-radius: 25px;
+  width: 90vw;
+}
+
+#weathericons img,
+#weathericons h2 {
+  display: inline-block;
+  vertical-align: middle;
 }
 
 </style>

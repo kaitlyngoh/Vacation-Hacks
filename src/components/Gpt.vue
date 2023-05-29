@@ -3,7 +3,7 @@
   <div id="loading" style="display: none;">Please allow response time of up to a minute...</div>
   <div id="secondContainer">
     <form id="myForm">
-      <h1 class="titleOfDiv">Vacation Planner</h1>
+      <h1 class="titleOfDiv">Please Enter Your Trip Details</h1>
       <br />
       <div class="formLi">
         <label for="location1"> Location: </label>
@@ -21,10 +21,11 @@
 
         <label for="budget1"> Budget: </label>
         <input
+        
           type="text"
           id="budget1"
           required=""
-          placeholder="Enter Budget (USD)"
+          placeholder="Enter Budget"
         />
         <br /><br />
 
@@ -38,7 +39,7 @@
         <br /><br />
 
         <div class="save">
-          <button id="saveBtn" type="button" v-on:click="accessGpt">Save</button>
+          <button id="saveBtn" type="button" v-on:click="accessGpt">Let's Go !</button>
           <br /><br />
         </div>
       </div>
@@ -55,6 +56,8 @@ import { collection, getDocs, query, where, deleteDoc} from 'firebase/firestore'
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import axios from 'axios';
 import Loading from 'vue-loading-overlay';
+
+import Swal from 'sweetalert2';
 
 
 const apiKey = import.meta.env.VITE_APP_API_KEY;
@@ -123,9 +126,16 @@ export default {
         days +
         'days trip to ' +
         location +
-        'with a budget of ' +
-        budget;
-      alert('FINDING ITINERARY FOR: ' + location);
+        '($ ' +
+        budget + 
+        ")";
+
+      Swal.fire(
+        'Itinerary for a ' +
+        days +
+        ' days trip to ' +
+        location 
+        );
 
       let request = {
         method: 'post',
@@ -217,9 +227,20 @@ export default {
 
 <style scoped>
 h1 {
-  background-color: rgb(221, 148, 143);
+  background-color: rgb(0, 13, 80);
+  color: white;
+  display: inline-block;
+  padding: 17px;
+  border-radius: 25px;
+  width: 90vw;
 }
 
+input {
+  height: 35px;
+  border-radius: 10px;
+  outline: none;
+  margin-left: 25px;
+}
 .formLi {
   display: inline-block;
   text-align: right;
@@ -230,10 +251,23 @@ form {
   margin: auto;
 }
 input:hover {
-  box-shadow: 3px 3px rgb(224, 248, 8);
-  border-radius: 2px;
+  box-shadow: 3px 3px rgb(0, 0, 0);
 }
 .save {
+  display: flex;
+  justify-content: center;
+}
+
+input[type="text"] {
+    text-align: center;
+}
+
+#saveBtn {
+  background-color: #f3f6f8; 
+  border-radius: 10px; 
+  /* border: 2px solid black;  */
+  padding: 10px 50px; 
+  color: black;
   text-align: center;
 }
 </style>

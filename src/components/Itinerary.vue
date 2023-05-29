@@ -1,7 +1,10 @@
 <template>
+    <div id="itinerarypic">
+        <img src="@/assets/itinerary.png" style="height: 5vh; width: 2vw; margin-right: 15px;">
         <h2 id = "IP">Itinerary Plan</h2>
+    </div>
 
-        <h3 v-if="this.loc">{{ this.drn }} days itinerary in {{ this.loc }} (USD ${{ this.bgt }}) </h3>
+        <h3 v-if="this.loc" style="font-size: 25px;">{{ this.drn }} days itinerary in {{ this.loc }} (USD ${{ this.bgt }}) </h3>
         
         <table>
             <tr v-for="item in items" :key="item">
@@ -11,7 +14,7 @@
 
 
         <h3 v-if="this.itr"></h3>
-        <h3 v-else> Please Key In Itinerary</h3>
+        <h3 v-else style="font-size: 25px;"> Please Key In Itinerary</h3>
         <br>
 </template>
 
@@ -84,7 +87,22 @@ export default {
 
 <style scoped>
 
-h1,h2 {
+#itinerarypic img,
+#itinerarypic h2 {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+#itinerarypic {
+  background-color: rgb(0, 13, 80);
+  color: white;
+  display: inline-block;
+  border-radius: 25px;
+  width: 90vw;
+  /* padding: 10px; */
+}
+
+/* h1 {
     text-align: center;
     background-color: rgb(146, 76, 226);
     font: 700;
@@ -95,10 +113,11 @@ h1,h2 {
     margin-inline-start: 0px;
     margin-inline-end: 0px;
     font-weight: bold;
-}
+} */
 table {
     border-collapse: collapse;
-    width: 100%;
+    width: 90%;
+    display: inline-block;
 }
 
 th, td {
@@ -108,12 +127,16 @@ th, td {
 }
 
 tr:nth-child(even) {
-    background-color: #f2f2f2;
+    background-color: white;
 }
 
-th {
+tr:nth-child(odd) {
+    background-color: #fbfcec;
+}
+
+/* th {
     background-color: #4CAF50;
     color: white;
-}
+} */
 
 </style>

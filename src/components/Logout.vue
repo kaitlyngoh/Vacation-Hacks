@@ -33,8 +33,12 @@ export default {
 
 <style scoped>
 #btn{
+    background-color: #f3f6f8; 
+    border-radius: 10px; 
+    /* border: 2px solid black;  */
+    padding: 10px 50px; 
+    color: black;
     text-align: center;
-    margin: auto;
 }
 
 #btn:hover {
