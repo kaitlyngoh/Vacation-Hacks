@@ -3,7 +3,7 @@
   <div id="loading" style="display: none;">Please allow response time of up to a minute...</div>
   <div id="secondContainer">
     <form id="myForm">
-      <h1 class="titleOfDiv">Vacation Planner</h1>
+      <h1 class="titleOfDiv">Please Enter Your Trip Details</h1>
       <br />
       <div class="formLi">
         <label for="location1"> Location: </label>
@@ -39,7 +39,7 @@
         <br /><br />
 
         <div class="save">
-          <button id="saveBtn" type="button" v-on:click="accessGpt">Save</button>
+          <button id="saveBtn" type="button" v-on:click="accessGpt">Let's Go !</button>
           <br /><br />
         </div>
       </div>
@@ -227,7 +227,12 @@ export default {
 
 <style scoped>
 h1 {
-  background-color: rgb(51, 78, 213);
+  background-color: rgb(0, 13, 80);
+  color: white;
+  display: inline-block;
+  padding: 17px;
+  border-radius: 25px;
+  width: 90vw;
 }
 
 input {
@@ -258,9 +263,9 @@ input[type="text"] {
 }
 
 #saveBtn {
-  background-color: #fff6f6; 
+  background-color: #f3f6f8; 
   border-radius: 10px; 
-  border: 2px solid black; 
+  /* border: 2px solid black;  */
   padding: 10px 50px; 
   color: black;
   text-align: center;

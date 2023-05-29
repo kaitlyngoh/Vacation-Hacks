@@ -13,17 +13,9 @@
     
     <style>
     #nav {
-        background-color: rgb(177, 229, 255);
+        background-color: rgb(208, 239, 255);
     }
     
-    /* #nav a {
-        font-weight: bold;
-        color: rgb(87, 80, 69);
-    }
-    
-    #nav a.router-link-exact-active {
-        color: yellowgreen;
-    } */
     </style>
     
     <script>
