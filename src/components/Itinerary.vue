@@ -1,7 +1,7 @@
 <template>
         <h2 id = "IP">Itinerary Plan</h2>
 
-        <h3 v-if="this.loc">{{ this.drn }} days itinerary in {{ this.loc }} </h3>
+        <h3 v-if="this.loc">{{ this.drn }} days itinerary in {{ this.loc }} (USD ${{ this.bgt }}) </h3>
         
         <table>
             <tr v-for="item in items" :key="item">
@@ -60,6 +60,8 @@ export default {
                 var itr = userDocument.data().plan
                 var loc = userDocument.data().location
                 var drn = userDocument.data().days
+                var bgt = userDocument.data().budget
+                this.bgt = bgt
                 this.drn = drn
                 this.loc = loc
                 this.itr = itr
@@ -102,7 +104,7 @@ table {
 th, td {
     text-align: left;
     padding: 8px;
-    border: 1px solid black;
+    border: 1px solid rgb(25, 9, 21);
 }
 
 tr:nth-child(even) {
