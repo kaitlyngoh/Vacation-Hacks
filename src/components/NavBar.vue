@@ -1,8 +1,12 @@
 <template>
     <div id = logged v-if="user">
         <div id ="nav">
+            <div id="top">
+                <img src="@/assets/travel.png" style="height: 12vh; width: 6vw; margin-right: 20px; margin-top: 10px;">
+                <span style="font-family: gabriola; font-size: 60px; margin-top: 20px;"> Plan Your Trip With Us !</span> 
+            </div>
+            <br>
             <div id="pages">
-                <img src="@/assets/travel.png" style="height: 12vh; width: 6vw; margin-right: 20px;">
                     <router-link to = "/home"> Home</router-link> |
                     <router-link to = "/about"> About</router-link> |
                     <router-link to = "/profile"> Profile</router-link>
@@ -12,10 +16,21 @@
     </template>
     
     <style>
-    #nav {
+    #top {
         background-color: rgb(152, 221, 255);
+        border-radius: 20px;
+        height: 120px;
+    }
+
+    #top img,
+    #top span {
+        display: inline-block;
+        vertical-align: middle;
     }
     
+    #pages {
+        font-size: 20px;
+    }
     </style>
     
     <script>
