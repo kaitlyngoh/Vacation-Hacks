@@ -1,6 +1,7 @@
 <template>
     <div style="text-align:center;">
-        <h1 id = "mainHead"> Vacation Hack </h1>
+        <h1 id = "mainHead" style="font-size: 60px;"> Vacation Hacks </h1>
+        <img src="@/assets/login.jpg" style="height: 60vh; width: 60vw;">
         <div id = "firebaseui-auth-container"></div>
     </div>
 </template>
