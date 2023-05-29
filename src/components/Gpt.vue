@@ -11,12 +11,12 @@
           type="text"
           id="location1"
           required=""
-          placeholder="Enter Location"
+          placeholder="        Enter Location"
         />
         <br /><br />
 
         <label for="days1"> No. of Days: </label>
-        <input type="text" id="days1" required="" placeholder="Enter Days" />
+        <input type="text" id="days1" required="" placeholder="        Enter Days" />
         <br /><br />
 
         <label for="budget1"> Budget: </label>
@@ -24,7 +24,7 @@
           type="text"
           id="budget1"
           required=""
-          placeholder="Enter Budget (USD)"
+          placeholder="       Enter Budget"
         />
         <br /><br />
 
@@ -33,7 +33,7 @@
           type="text"
           id="month1"
           required=""
-          placeholder="Enter Month"
+          placeholder="       Enter Month"
         />
         <br /><br />
 
@@ -55,6 +55,8 @@ import { collection, getDocs, query, where, deleteDoc} from 'firebase/firestore'
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import axios from 'axios';
 import Loading from 'vue-loading-overlay';
+
+import Swal from 'sweetalert2';
 
 
 const apiKey = import.meta.env.VITE_APP_API_KEY;
@@ -123,9 +125,16 @@ export default {
         days +
         'days trip to ' +
         location +
-        'with a budget of ' +
-        budget;
-      alert('FINDING ITINERARY FOR: ' + location);
+        '($ ' +
+        budget + 
+        ")";
+
+      Swal.fire(
+        'Itinerary for a ' +
+        days +
+        ' days trip to ' +
+        location 
+        );
 
       let request = {
         method: 'post',
@@ -217,9 +226,15 @@ export default {
 
 <style scoped>
 h1 {
-  background-color: rgb(221, 148, 143);
+  background-color: rgb(51, 78, 213);
 }
 
+input {
+  height: 35px;
+  border-radius: 10px;
+  outline: none;
+  margin-left: 25px;
+}
 .formLi {
   display: inline-block;
   text-align: right;
@@ -230,10 +245,19 @@ form {
   margin: auto;
 }
 input:hover {
-  box-shadow: 3px 3px rgb(224, 248, 8);
-  border-radius: 2px;
+  box-shadow: 3px 3px rgb(0, 0, 0);
 }
 .save {
+  display: flex;
+  justify-content: center;
+}
+
+#saveBtn {
+  background-color: #fff6f6; 
+  border-radius: 10px; 
+  border: 2px solid black; 
+  padding: 10px 50px; 
+  color: black;
   text-align: center;
 }
 </style>
