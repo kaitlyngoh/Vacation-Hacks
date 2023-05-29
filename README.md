@@ -1,6 +1,4 @@
 # Vacation Hacks
-[![Demo](https://img.youtube.com/vi/N0SKqduV6-c/0.jpg)](https://www.youtube.com/watch?v=N0SKqduV6-c)
-
 
 Vacation Hacks aims to help users plan their travel itineraries efficiently. It provides a user-friendly interface where users can input their travel preferences, such as destination, duration of stay and budget. The system then generates a personalized travel itinerary as well as weather information based on the provided information. 
 
