@@ -8,8 +8,7 @@
             <br>
             <div id="pages">
                     <router-link to = "/home"> Home</router-link> |
-                    <router-link to = "/about"> About</router-link> |
-                    <router-link to = "/profile"> Profile</router-link>
+                    <router-link to = "/about"> About</router-link>
             </div>
         </div>
     </div>
