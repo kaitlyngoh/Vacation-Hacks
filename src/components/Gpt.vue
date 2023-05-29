@@ -53,7 +53,6 @@ import { doc, setDoc, getDoc } from 'firebase/firestore';
 
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import axios from 'axios';
-import { Spinner } from 'spin.js';
 import Loading from 'vue-loading-overlay';
 
 
@@ -86,6 +85,12 @@ export default {
 
   methods: {
     async accessGpt() {
+      // Delete All Existing Files owned by user
+
+      // Query User documents and delete all
+    
+
+
       this.isLoading = true;
       document.getElementById("loading").style.display = "block";
       let location = document.getElementById('location1').value;
