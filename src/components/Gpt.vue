@@ -1,4 +1,6 @@
 <template>
+  <loading v-model:active="isLoading"></loading>
+  <div id="loading" style="display: none;">Please allow response time of up to a minute...</div>
   <div id="secondContainer">
     <form id="myForm">
       <h1 class="titleOfDiv">Vacation Planner</h1>
@@ -22,7 +24,7 @@
           type="text"
           id="budget1"
           required=""
-          placeholder="Enter Budget"
+          placeholder="Enter Budget (USD)"
         />
         <br /><br />
 
@@ -36,8 +38,8 @@
         <br /><br />
 
         <div class="save">
-          <button id="saveBtn" type="button" v-on:click="accessGpt">Save</button
-          ><br /><br />
+          <button id="saveBtn" type="button" v-on:click="accessGpt">Save</button>
+          <br /><br />
         </div>
       </div>
     </form>
@@ -48,20 +50,17 @@
 import firebaseApp from '../firebase.js';
 import { getFirestore } from 'firebase/firestore';
 import { doc, setDoc, getDoc } from 'firebase/firestore';
+import { collection, getDocs, query, where, deleteDoc} from 'firebase/firestore';
 
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import axios from 'axios';
+import Loading from 'vue-loading-overlay';
+
 
 const apiKey = import.meta.env.VITE_APP_API_KEY;
 
 const db = getFirestore(firebaseApp);
 export default {
-  data() {
-    return {
-      user: false,
-      useremail: '',
-    };
-  },
 
   mounted() {
     const auth = getAuth();
@@ -73,8 +72,47 @@ export default {
     });
   },
 
+  components: {
+    Loading
+  },
+  
+  data() {
+    return {
+      user: false,
+      useremail: '',
+      isLoading: false
+
+    };
+  },
+
+
   methods: {
     async accessGpt() {
+      // Delete All Existing Files owned by user
+
+      // Query User documents and delete all
+      if (this.useremail) {
+        const itrCollection = collection(getFirestore(), "itinerary");
+        const itrQuery = query(
+          itrCollection,
+          where("email", "==", this.useremail),);
+          const queryItrSnapshot = await getDocs(itrQuery);
+          queryItrSnapshot.forEach((doc) => {
+            deleteDoc(doc.ref);
+          });
+
+        const weatherCollection = collection(getFirestore(), "weather");
+        const weatherQuery = query(
+          weatherCollection,
+          where("email", "==", this.useremail),);
+        const weatherSnapshot = await getDocs(weatherQuery);
+        weatherSnapshot.forEach((doc) => {
+          deleteDoc(doc.ref);
+        });
+      }
+
+      this.isLoading = true;
+      document.getElementById("loading").style.display = "block";
       let location = document.getElementById('location1').value;
       let days = document.getElementById('days1').value;
       let budget = document.getElementById('budget1').value;
@@ -107,11 +145,16 @@ export default {
 
       axios(request)
         .then(async (response) => {
+          this.isLoading = false;
+          document.getElementById("loading").style.display = "none";
           const responseData = response.data.choices[0].message.content;
+          // Response from gpt about Itinerary
           console.log(responseData);
 
           try {
-            const docRef = await setDoc(doc(db, 'itinerary', location), {
+            this.$emit('save');
+            const docRef = await setDoc(doc(db, 'itinerary', location + this.useremail), {
+              email:this.useremail,
               location: location,
               days: days,
               budget: budget,
@@ -145,11 +188,15 @@ export default {
       axios(request)
         .then(async (response) => {
           const responseData = response.data.choices[0].message.content;
+          // Response from gpt about weather
           console.log(responseData);
 
           try {
-            const docRef = await setDoc(doc(db, 'itinerary', location), {
-              temperature: responseData
+            this.$emit('save');
+            const docRef = await setDoc(doc(db, 'weather',  location + this.useremail), {
+              email: this.useremail,
+              temperature: responseData,
+              month: month
             });
             console.log(
               'SAVED TO FIRESTORE DATABASE FOR TEMPERATURE OF LOCATION: ' + location

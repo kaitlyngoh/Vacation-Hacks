@@ -1,7 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import Home from '@/views/Home.vue'
 import About from '@/views/About.vue'
-import OnlyProfit from '@/views/OnlyProfit.vue'
 import Login from '@/components/Login.vue'
 import Profile from '@/views/Profile.vue'
 import NotFound from '@/views/NotFound.vue'
@@ -21,11 +20,6 @@ const routes = [
     path: '/about',
     name: 'About',
     component: About
-  },
-  {
-    path: '/profit',
-    name: 'OnlyProfit',
-    component: OnlyProfit
   },
   {
     path: '/profile',
