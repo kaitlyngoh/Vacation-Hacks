@@ -11,20 +11,21 @@
           type="text"
           id="location1"
           required=""
-          placeholder="        Enter Location"
+          placeholder="Enter Location"
         />
         <br /><br />
 
         <label for="days1"> No. of Days: </label>
-        <input type="text" id="days1" required="" placeholder="        Enter Days" />
+        <input type="text" id="days1" required="" placeholder="Enter Days" />
         <br /><br />
 
         <label for="budget1"> Budget: </label>
         <input
+        
           type="text"
           id="budget1"
           required=""
-          placeholder="       Enter Budget"
+          placeholder="Enter Budget"
         />
         <br /><br />
 
@@ -33,7 +34,7 @@
           type="text"
           id="month1"
           required=""
-          placeholder="       Enter Month"
+          placeholder="Enter Month"
         />
         <br /><br />
 
@@ -250,6 +251,10 @@ input:hover {
 .save {
   display: flex;
   justify-content: center;
+}
+
+input[type="text"] {
+    text-align: center;
 }
 
 #saveBtn {
