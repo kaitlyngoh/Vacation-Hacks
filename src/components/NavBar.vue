@@ -13,7 +13,7 @@
     
     <style>
     #nav {
-        background-color: rgb(208, 239, 255);
+        background-color: rgb(152, 221, 255);
     }
     
     </style>

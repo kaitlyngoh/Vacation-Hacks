@@ -1,9 +1,9 @@
 <template>
     <br>
     <div id="weathericons">
-        <img src="@/assets/sun.png" style="height: 5vh; width: 2vw; margin-right: 15px;">
+        <img src="@/assets/sun.png" style="height: 4vh; width: 2vw; margin-right: 15px;">
         <h2 id = "IP">Weather</h2>
-        <img src="@/assets/rain.png" style="height: 5vh; width: 2vw; margin-left: 15px;">
+        <img src="@/assets/rain.png" style="height: 4vh; width: 2vw; margin-left: 15px;">
     </div>
     <h3 v-if="this.temp" style="font-size: 25px;">{{ this.temp }} in {{ this.mth }}</h3>
     <h3 v-else style="font-size: 25px;"> Please Key In Fields</h3>
