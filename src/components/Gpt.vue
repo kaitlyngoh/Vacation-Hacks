@@ -50,6 +50,7 @@
 import firebaseApp from '../firebase.js';
 import { getFirestore } from 'firebase/firestore';
 import { doc, setDoc, getDoc } from 'firebase/firestore';
+import { collection, getDocs, query, where, deleteDoc} from 'firebase/firestore';
 
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import axios from 'axios';
@@ -60,6 +61,17 @@ const apiKey = import.meta.env.VITE_APP_API_KEY;
 
 const db = getFirestore(firebaseApp);
 export default {
+
+  mounted() {
+    const auth = getAuth();
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        this.user = user;
+        this.useremail = user.email;
+      }
+    });
+  },
+
   components: {
     Loading
   },
@@ -73,23 +85,31 @@ export default {
     };
   },
 
-  mounted() {
-    const auth = getAuth();
-    onAuthStateChanged(auth, (user) => {
-      if (user) {
-        this.user = user;
-        this.useremail = user.email;
-      }
-    });
-  },
 
   methods: {
     async accessGpt() {
       // Delete All Existing Files owned by user
 
       // Query User documents and delete all
-    
+      if (this.useremail) {
+        const itrCollection = collection(getFirestore(), "itinerary");
+        const itrQuery = query(
+          itrCollection,
+          where("email", "==", this.useremail),);
+          const queryItrSnapshot = await getDocs(itrQuery);
+          queryItrSnapshot.forEach((doc) => {
+            deleteDoc(doc.ref);
+          });
 
+        const weatherCollection = collection(getFirestore(), "weather");
+        const weatherQuery = query(
+          weatherCollection,
+          where("email", "==", this.useremail),);
+        const weatherSnapshot = await getDocs(weatherQuery);
+        weatherSnapshot.forEach((doc) => {
+          deleteDoc(doc.ref);
+        });
+      }
 
       this.isLoading = true;
       document.getElementById("loading").style.display = "block";
