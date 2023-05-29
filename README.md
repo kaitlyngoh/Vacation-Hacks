@@ -4,7 +4,6 @@ Vacation Hacks aims to help users plan their travel itineraries efficiently. It 
 
 ![Vacation Hacks](src/assets/app.png)
 
-
 ## Key Features
 1. Customizable Itineraries: Users can input their desired destination, travel dates, and preferences, allowing the system to generate tailored itineraries.
 
