@@ -1,6 +1,7 @@
 # Vacation Hacks
 
 Vacation Hacks aims to help users plan their travel itineraries efficiently. It provides a user-friendly interface where users can input their travel preferences, such as destination, duration of stay and budget. The system then generates a personalized travel itinerary as well as weather information based on the provided information. 
+https://devpost.com/software/vacation-hacks?ref_content=user-portfolio&ref_feature=in_progress
 https://www.youtube.com/watch?v=N0SKqduV6-c
 ![Vacation Hacks](src/assets/app.png)
 
@@ -9,6 +10,8 @@ https://www.youtube.com/watch?v=N0SKqduV6-c
 
 2. Activity Recommendations: The system suggests popular attractions, landmarks, and activities based on the selected destination, providing users with a variety of options to choose from.
 3. Weather Information: Users can access real-time weather information for their selected destination, helping them plan activities and pack accordingly.
+
+Done by: Kaitlyn Goh, Jamie Tan, Lu Yi Fan
 
 ## Getting Started
 To get started with Vacation Hacks, please follow these steps:
